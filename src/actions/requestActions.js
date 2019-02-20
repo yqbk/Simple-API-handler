@@ -1,9 +1,12 @@
 export function fetchAPI(address, mode) {
   return dispatch => {
-    dispatch(getAPIRequest(address));
+    // we replace any address with path to file
+    const mockedAddress = "/service/response." + mode;
+
+    dispatch(getAPIRequest(mockedAddress));
 
     // Mock real address and get data from static files provided for the task
-    return fetch("/service/response." + mode)
+    return fetch(mockedAddress)
       .then(handleErrors)
       .then(response => (mode === "json" ? response.json() : response.text()))
       .then(data => dispatch(getAPIRequestSuccess(data)))

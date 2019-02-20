@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchAPI } from "../actions/requestActions";
-
-// import { Highlight } from "react-fast-highlight";
-import CustomHighlight from "../components/CustomHighlight/CustomHighlight";
-
+import "./App.css";
 import {
   SplitButton,
   Dropdown,
@@ -14,7 +11,7 @@ import {
   Jumbotron
 } from "react-bootstrap";
 
-import "./App.css";
+import Highlight from "react-highlight";
 
 class App extends Component {
   constructor(props) {
@@ -35,18 +32,31 @@ class App extends Component {
   };
 
   handleRequest = () => {
+    this.setState({ address: this.props.address });
     this.props.fetchAPI(this.state.address, this.state.mode);
   };
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.address !== this.props.address) {
+      this.setState({ address: this.props.address });
+    }
+  }
 
   render() {
     const { response } = this.props;
 
     return (
       <div className="main">
+        <div>
+          <Highlight innerHTML={true}>{"<p>Hello world</p>"}</Highlight>
+          <Highlight language="javascript">
+            {`function foo() { return 'bar' }`}
+          </Highlight>
+        </div>
+
         <Navbar className="top-navbar" bg="dark" variant="dark">
           <Navbar.Brand href="#home">{"Schibsted REST framework"}</Navbar.Brand>
         </Navbar>
-
         <div className="main-app">
           <div className="header">
             <h1>Advertiser List</h1>
@@ -77,6 +87,7 @@ class App extends Component {
               placeholder="/advertisers/?format=api"
               required
               onChange={this.handleAddressChange}
+              value={this.state.address}
             />
             <Form.Control.Feedback type="invalid">
               Please choose an endpoint.
@@ -86,11 +97,11 @@ class App extends Component {
           {!!response && (
             <Jumbotron className="response-output">
               {typeof response === "object" ? (
-                <CustomHighlight>
+                <Highlight language="json">
                   {JSON.stringify(response, null, 2)}
-                </CustomHighlight>
+                </Highlight>
               ) : (
-                <CustomHighlight>{response}</CustomHighlight>
+                <Highlight language="xml">{response}</Highlight>
               )}
             </Jumbotron>
           )}
@@ -101,7 +112,8 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  response: state.responses.response
+  response: state.responses.response,
+  address: state.responses.address
 });
 
 const mapDispatchToProps = dispatch => ({
