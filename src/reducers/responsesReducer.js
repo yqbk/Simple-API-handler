@@ -21,12 +21,13 @@ export default function responsesReducer(state = initialState, action) {
       };
     }
 
-    case GET_API_REQUEST_SUCCESS:
+    case GET_API_REQUEST_SUCCESS: {
       return {
         ...state,
         loading: false,
         response: action.payload.response
       };
+    }
 
     case GET_API_REQUEST_FAILURE:
       return {

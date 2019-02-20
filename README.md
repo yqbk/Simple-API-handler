@@ -11,3 +11,9 @@ I decided to use some libraries to make the project nicer and to allow further a
 Currently address field is not used and validated. Later on it could be validated and used as an real edpoint address instead of mocked filed.
 
 I've added few tests of the responsesReducer.
+
+install: `npm install`
+
+run: `npm start`
+
+test: `npm run test`
