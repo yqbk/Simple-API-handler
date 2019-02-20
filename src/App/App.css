@@ -1,0 +1,17 @@
+.main {
+  border-top: 2px solid red;
+}
+
+.response-output {
+  margin-top: 5vh;
+}
+
+.main-app {
+  padding: 30px;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

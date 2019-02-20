@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<advertiser>
+    <id>1</id>
+    <name>MockAdvertiser</name>
+    <external_id>1</external_id>
+    <impressions>52721284</impressions>
+    <clicks>93149</clicks>
+</advertiser>
+
