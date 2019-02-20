@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Highlight from "react-highlight";
 import { fetchAPI } from "../actions/requestActions";
 import "./App.css";
 import {
@@ -10,8 +11,6 @@ import {
   Navbar,
   Jumbotron
 } from "react-bootstrap";
-
-import Highlight from "react-highlight";
 
 class App extends Component {
   constructor(props) {
@@ -47,13 +46,6 @@ class App extends Component {
 
     return (
       <div className="main">
-        <div>
-          <Highlight innerHTML={true}>{"<p>Hello world</p>"}</Highlight>
-          <Highlight language="javascript">
-            {`function foo() { return 'bar' }`}
-          </Highlight>
-        </div>
-
         <Navbar className="top-navbar" bg="dark" variant="dark">
           <Navbar.Brand href="#home">{"Schibsted REST framework"}</Navbar.Brand>
         </Navbar>
